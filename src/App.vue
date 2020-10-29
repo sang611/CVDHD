@@ -1,28 +1,62 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!--    <div id="nav">-->
+<!--      <router-link to="/">Home</router-link> |-->
+<!--      <router-link to="/login">Login</router-link>-->
+<!--    </div>-->
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import axios from "axios";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        created() {
+            /*axios.post(
+                "http://localhost:8017/verifyToken",{},
+                {
+                    headers: {
+                        'x-access-token' : `${localStorage.getItem('accessToken')}`
+                    } })
+                .then((res) => {
+                    if(res.data) {
+                        console.log(res.data);
+                        this.$store.commit('setAuthenticated', true);
+                    }
+                    else {
+                        this.$store.commit('setAuthenticated', false);
+                    }
+                })
+                .catch(e=>this.$store.commit('setAuthenticated', false));*/
+        }
+    }
 </script>
 
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
+
