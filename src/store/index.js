@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from "axios";
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-    authenticated: false
+    authStatus:
+        axios.post(
+        "http://localhost:8017/verifyToken",{},
+        {
+          headers: {
+            'x-access-token' : `${localStorage.getItem('accessToken')}`
+          } })
+        .then((res) => {
+            store.commit('setAuthenticated', true);
+        })
+            .catch((e) => console.log(e)),
+    isAuthenticated: false
   },
   mutations: {
     setAuthenticated(state, status){
-      state.authenticated = status;
+      state.isAuthenticated = status;
     }
   },
   actions: {
@@ -17,3 +29,5 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+export default store;

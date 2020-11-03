@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
-import StudentCourses from "../views/StudentCourses";
 import store from '../store/index'
+import axios from "axios";
+import Courses from "../views/Courses";
+import CourseDetails from "../views/CourseDetails";
 
 Vue.use(VueRouter)
 
@@ -33,40 +35,55 @@ const routes = [
     }
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: StudentCourses,
+    path: '/courses',
+    name: 'Courses',
+    component: Courses,
     meta: {
       requiresAuth: true
-    }
-  }
+    },
+  },
+  {
+    path: '/courses/details',
+    name: 'CourseDetails',
+    component: CourseDetails,
+    meta: {
+      requiresAuth: true
+    },
+  },
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
+
+
 
 router.beforeEach((to, from, next) => {
 
   if(to.matched.some(record => record.meta.requiresAuth)) {
-    console.log(store.state.authenticated)
-      if(store.state.authenticated === true) next();
-      else {
-        next({
-          path: '/login',
-          params: { nextUrl: to.fullPath }
-        })
 
-      }
+      store.state.authStatus
+      .then(() => {
+        console.log(store.state.isAuthenticated)
+        if(store.state.isAuthenticated)
+          next();
+        else
+          next({
+            path: '/login',
+            query: { nextUrl: to.fullPath }
+          })
+      })
+
   }
-  else if(to.matched.some(record => record.meta.guest)) {
+  /*else if(to.matched.some(record => record.meta.guest)) {
     if(localStorage.getItem('jwt') == null){
       next()
     }
     else{
       next({ name: 'Home'})
     }
-  }
+  }*/
   else {
     next()
   }
