@@ -6,6 +6,7 @@ import store from '../store/index'
 import axios from "axios";
 import Courses from "../views/Courses";
 import CourseDetails from "../views/CourseDetails";
+import UploadVideo from "../views/UploadVideo";
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,7 @@ const routes = [
     name: 'About',
     component: () => import('../views/About.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -50,6 +51,14 @@ const routes = [
       requiresAuth: true
     },
   },
+  {
+    path: '/upload',
+    name: 'UploadVideo',
+    component: UploadVideo,
+    meta: {
+      requiresAuth: true
+    }
+  }
 ]
 
 const router = new VueRouter({

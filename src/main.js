@@ -4,7 +4,10 @@ import router from './router'
 
 
 import store from './store';
-import axios from 'axios';
+import VueFileAgent from 'vue-file-agent';
+import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+
+Vue.use(VueFileAgent);
 
 
 Vue.config.productionTip = false;
@@ -14,8 +17,8 @@ if(localStorage.getItem('accessToken') == null) {
 }
 
 
-new Vue({  store,
+new Vue({
+  store,
   router,
-
   render: h => h(App)
 }).$mount('#App')

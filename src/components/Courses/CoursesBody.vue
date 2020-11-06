@@ -53,12 +53,12 @@
             </div>
             <div class="course-item">
                 <div class="course-item-img">
-                    <div style="background-image: url('https://vueschool.io/media/8e166e84f797aba15d9ab68b09bda16e/the-vuejs-3-master-class.jpeg');"></div>
+                    <div style="background-image: url('https://vueschool.io/media/f007f6057444d9a7f567163391d2b366/vuejs-3-master-class-not-transparent.jpg');"></div>
                 </div>
                 <div class="course-item-desc">
                     <h3 class="course-title">Vue 3 Composition API</h3><br>
                     <p class="course-subtitle">
-                        Leverage the power of the new Composition API and build reusable features (composables) for scalable Vue applications.
+                        Leverage the power of the new Composition API and build reusable features.
                     </p>
                     <div class="course-lecturers">
                         <span class="label label-default">TS. Vu Ngoc Sang</span>
@@ -167,12 +167,15 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 20px;
         padding-bottom: 40px;
+
     }
 
     .courses-list .course-item {
         border-radius: 10px;
         overflow: hidden;
         cursor: pointer;
+        background-color: #ffffff;
+        position: relative;
     }
 
     .courses-list .course-item .course-item-img {
@@ -194,7 +197,7 @@
 
     .courses-list .course-item .course-item-desc {
         padding: 25px 24px;
-        background-color: #ffffff;
+        height: calc(100% - 20rem);
     }
 
     .course-item-desc .course-title {
@@ -214,5 +217,7 @@
         background-color: #eae9ef;
         color: #766b93;
         text-transform: uppercase;
+        position: absolute;
+        bottom: 20px;
     }
 </style>
