@@ -1,24 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Login from "../views/Login";
-import store from '../store/index'
+import store from '../store/index';
 import axios from "axios";
-import Courses from "../views/Courses";
-import CourseDetails from "../views/CourseDetails";
+import Courses from "../views/Student/Courses";
+import CourseDetails from "../views/Student/CourseDetails";
 import UploadVideo from "../views/UploadVideo";
+import ACourse from "../views/Lecturer/ACourse";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-    meta: {
-      requiresAuth: true
-    }
-  },
   {
     path: '/about',
     name: 'About',
@@ -58,7 +50,15 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  }
+  },
+  {
+    path: '/lecturer/course',
+    name: 'ACourse',
+    component: ACourse,
+    meta: {
+      requiresAuth: false
+    }
+  },
 ]
 
 const router = new VueRouter({
@@ -71,11 +71,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
   if(to.matched.some(record => record.meta.requiresAuth)) {
-
-      store.state.authStatus
+      const authStoreState = store.state.authStore;
+      authStoreState.authStatus
       .then(() => {
-        console.log(store.state.isAuthenticated)
-        if(store.state.isAuthenticated)
+
+        if(authStoreState.isAuthenticated)
           next();
         else
           next({

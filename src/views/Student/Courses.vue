@@ -6,8 +6,8 @@
 </template>
 
 <script>
-    import CoursesNavbar from "../components/CoursesNavbar";
-    import CoursesBody from "../components/Courses/CoursesBody";
+    import CoursesNavbar from "../../components/CoursesNavbar";
+    import CoursesBody from "../../components/StudentComponents/Courses/CoursesBody";
     export default {
         name: "Courses",
         components: {CoursesBody, CoursesNavbar}

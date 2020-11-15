@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="courses-list">
-            <div class="course-item">
+            <div class="course-item" v-on:click="navToDetails">
                 <div class="course-item-img">
                     <div style="background-image: url('https://vueschool.io/media/4736c711002f927627a56f1e43a4841a/vueschool-vue-3-composition-api-not-transparent.jpg');"></div>
                 </div>
@@ -99,7 +99,12 @@
 
 <script>
     export default {
-        name: "CoursesBody"
+        name: "CoursesBody",
+        methods: {
+            navToDetails() {
+                this.$router.push("courses/details");
+            }
+        }
     }
 </script>
 
